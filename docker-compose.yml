@@ -1,0 +1,18 @@
+version: '3'
+services:
+  mssql:
+    image: mcr.microsoft.com/mssql/server:2017-latest-ubuntu
+    container_name: "mssql"
+    networks: 
+      - local-network
+    ports:
+      - "1433:1433"
+    restart: always   
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=12345@Abcde   
+    volumes:
+      - ./db/mssql:/var/opt/mssql
+networks: 
+  local-network:
+    driver: bridge
